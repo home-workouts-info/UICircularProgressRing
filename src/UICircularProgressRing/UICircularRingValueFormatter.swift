@@ -20,6 +20,9 @@ import UIKit
 public protocol UICircularRingValueFormatter {
     /// returns a string for the given object
     func string(for value: Any) -> String?
+    
+    /// returns attributes string for the given object
+    func string(for value: Any) -> NSAttributedString?
 }
 
 // MARK: UICircularTimerRingFormatter
@@ -65,6 +68,10 @@ public struct UICircularTimerRingFormatter: UICircularRingValueFormatter {
     public func string(for value: Any) -> String? {
         guard let value = value as? CGFloat else { return nil }
         return formatter.string(from: value.interval)
+    }
+    
+    public func string(for value: Any) -> NSAttributedString? {
+        return nil /// Not implemented
     }
 }
 
@@ -164,5 +171,9 @@ public struct UICircularProgressRingFormatter: UICircularRingValueFormatter {
                 return "\(Int(value))\(valueIndicator)"
             }
         }
+    }
+    
+    public func string(for value: Any) -> NSAttributedString? {
+        return nil /// Not implemented
     }
 }

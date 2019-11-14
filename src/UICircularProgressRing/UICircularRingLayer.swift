@@ -403,7 +403,14 @@ class UICircularRingLayer: CAShapeLayer {
         valueLabel.font = ring.font
         valueLabel.textAlignment = .center
         valueLabel.textColor = ring.fontColor
-        valueLabel.text = valueFormatter?.string(for: value)
+        
+        // Pass the attributed string first if implementation exist
+        if let attributedString: NSAttributedString = valueFormatter?.string(for: value) {
+            valueLabel.attributedText = attributedString
+        } else {
+            valueLabel.text = valueFormatter?.string(for: value)
+        }
+        
         ring.willDisplayLabel(label: valueLabel)
         valueLabel.sizeToFit()
 
